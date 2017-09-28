@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Text.RegularExpressions;
+using Windows.UI.Xaml.Media.Imaging;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x407 dokumentiert.
 
@@ -41,8 +42,9 @@ namespace TUMensa
         public MainPage()
         {
             this.InitializeComponent();
+            
+            TextBlockMealName.Text = "Bitte wählen Sie eine Mensa aus";
             TextBlockMealLabels.Text = "";
-            TextBlockMealName.Text = "";
             TextBlockMealPrice.Text = "";
             LoadMensen();
         }
@@ -196,12 +198,23 @@ namespace TUMensa
                 {
                     TextBlockMealLabels.Text = TextBlockMealLabels.Text + "\n" + label;
                 }
+                try
+                {
+                    MealImage.Source = new BitmapImage(new Uri(chosenMeal.getPicturelink()));
+                }
+                catch(Exception e)
+                {
+                    MealImage.Source = new BitmapImage(new Uri("https://bilderspeiseplan.studentenwerk-dresden.de/lieber_mensen_gehen_gross.jpg"));
+                }
+                
             }
             else
             {
                 TextBlockMealName.Text = "";
                 TextBlockMealPrice.Text = "";
                 TextBlockMealLabels.Text = "";
+                MealImage.Source = new BitmapImage(new Uri("https://bilderspeiseplan.studentenwerk-dresden.de/lieber_mensen_gehen_gross.jpg"));
+
             }
         }
 

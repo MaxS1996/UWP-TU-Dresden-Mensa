@@ -76,7 +76,8 @@
                     <RowDefinition Height="45"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
@@ -109,9 +110,16 @@
                            Text="Label"
                            HorizontalAlignment="Center"
                            Grid.Row="4"/>
-                <ListView x:Name="MealListView"
+                
+                <Image    x:Name="MealImage"
                           Grid.Row="5"
+                          Source="https://bilderspeiseplan.studentenwerk-dresden.de/lieber_mensen_gehen_gross.jpg"
+                          HorizontalAlignment="Center" Margin="10" MaxHeight="400" MaxWidth="500" MinHeight="150" MinWidth="200" Stretch="UniformToFill" VerticalAlignment="Center"/>
+
+                <ListView x:Name="MealListView"
+                          Grid.Row="6"
                           HorizontalAlignment="Center"
+                          Width="auto"
                           VerticalAlignment="Bottom"
                           SelectionChanged="MealListView_SelectionChanged"/> 
 

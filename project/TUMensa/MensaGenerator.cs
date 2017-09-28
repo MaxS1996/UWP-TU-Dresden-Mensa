@@ -99,12 +99,13 @@ namespace TUMensa
             //extract prices
             String prices = pExp.Match(plan).Value;
             prices = prices.Replace("<td class=\"preise\">", "");
+            String mealLink = generateMealLink(prices);
             prices = prices.Replace("</a></td>", "");
             Regex clean = new Regex("<a href=(.*?)>");
             prices = clean.Replace(prices, " ");
 
             //generate Meal
-            Meal newMeal = new Meal(name, prices);
+            Meal newMeal = new Meal(name, prices, mealLink);
 
             //fill Meal with warning labels
             //extract labels
@@ -127,6 +128,22 @@ namespace TUMensa
             
 
             return newMeal;
+        }
+
+
+        public String generateMealLink(String text)
+        {
+            Regex link = new Regex("\"(.*?)\"");
+            text = link.Match(text).Value;
+            String mensa = "https://www.studentenwerk-dresden.de/mensen/speiseplan/";
+
+            if (text != "")
+            {
+                
+                text = text.Replace("\"", "");
+                text = mensa + text;
+            }
+            return text;
         }
 
     }
