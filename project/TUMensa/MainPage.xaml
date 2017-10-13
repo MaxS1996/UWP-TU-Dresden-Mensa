@@ -33,7 +33,7 @@
                             Content="&#xE700;"
                             Width="50"
                             Height="50"
-                            Background="Transparent"
+                            Background="{ThemeResource AccentButtonBackground}"
                             Click="HamburgerButton_Click"
                             Grid.Row="0"/>
 
@@ -49,9 +49,8 @@
                             Width="50"
                             Height="50"
                             HorizontalAlignment="Right"
-                            Background="Transparent"
                             Tapped="Button1_Tapped"
-                            Grid.Column="0"/>
+                            Grid.Column="1" Background="{ThemeResource AccentButtonBackground}"/>
 
 
                         <Button x:Name="ShareButton"
@@ -60,8 +59,9 @@
                             Width="50"
                             Height="50"
                             Background="Transparent"
+                            HorizontalAlignment="Left"
                             Click="ShareButton_Click"
-                            Grid.Column="1"/>
+                            Grid.Column="0"/>
 
                     </Grid>
 
@@ -73,13 +73,30 @@
                             Tapped="Button2_Tapped"
                             Grid.Row="4"/>
 
-                    <Button x:Name="Button3"
-                            Content="Today"
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button x:Name="Button3"
+                            Content="&#xEC92;" 
+                            FontFamily="Segoe MDL2 Assets"
+                            Width="50"
+                            Height="50"
                             Margin="0,0,0,0"
-                            HorizontalAlignment="Center"
+                            HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Tapped="Button3_Tapped"
-                            Grid.Row="3"/>
+                            Grid.Column="0"/>
+
+                        <TextBlock 
+                            x:Name="TextBlockDate"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="DATE"
+                            Grid.Column="1"/>
+                    </Grid>
 
                     <ListView x:Name="MensaListView"
                               SelectionMode="Single"
@@ -91,58 +108,60 @@
                 </Grid>
             </SplitView.Pane>
 
-            <Grid>
+            <Grid 
+                HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="45"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="55"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock x:Name="TextBlock1"
                            Text="Mensen Studentenwerk Dresden"
                            FontSize="54"
                            TextTrimming="CharacterEllipsis"
                            VerticalAlignment="Top"
-                           HorizontalAlignment="Center"
-                           Grid.Row="0"/>
-                
+                           HorizontalAlignment="Stretch"
+                           Grid.Row="0" TextAlignment="Center"/>
+
                 <TextBlock x:Name="TextBlockTitle"
                            TextTrimming="CharacterEllipsis"
                            Text="Title"
-                           HorizontalAlignment="Center"
-                           Grid.Row="1"/>
+                           HorizontalAlignment="Stretch"
+                           Grid.Row="1" TextAlignment="Center"/>
 
                 <TextBlock x:Name="TextBlockMealName"
-                           Text="Gericht"
-                           HorizontalAlignment="Center"
-                           Grid.Row="2" TextWrapping="WrapWholeWords"/>
+                           Text="Gericht" TextAlignment="Center"
+                           HorizontalAlignment="Stretch"
+                           Grid.Row="2" TextWrapping="WrapWholeWords" FontSize="20"/>
 
                 <TextBlock x:Name="TextBlockMealPrice" 
                            Text="Preis"
-                           HorizontalAlignment="Center"
+                           HorizontalAlignment="Stretch"
                            Foreground="{ThemeResource AccentButtonBackground}"
-                           Grid.Row="3"/>
+                           Grid.Row="3" TextAlignment="Center"/>
 
                 <TextBlock x:Name="TextBlockMealLabels"
                            Text="Label"
-                           HorizontalAlignment="Center"
-                           Grid.Row="4"/>
-                
+                           HorizontalAlignment="Stretch"
+                           Grid.Row="4" TextAlignment="Center"/>
+
                 <Image    x:Name="MealImage"
                           Grid.Row="5"
                           Source="https://bilderspeiseplan.studentenwerk-dresden.de/lieber_mensen_gehen_gross.jpg"
-                          HorizontalAlignment="Center" Margin="10" MaxHeight="400" MaxWidth="500" MinHeight="150" MinWidth="200" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                          HorizontalAlignment="Center" Margin="10" MaxHeight="500" MaxWidth="700" MinHeight="150" MinWidth="200" Stretch="UniformToFill" VerticalAlignment="Center"/>
 
                 <ListView x:Name="MealListView"
                           Grid.Row="6"
-                          HorizontalAlignment="Center"
+                          HorizontalAlignment="Stretch"
+                          Margin="10, 0, 10, 10"
                           Width="auto"
                           VerticalAlignment="Bottom"
-                          SelectionChanged="MealListView_SelectionChanged"/> 
+                          SelectionChanged="MealListView_SelectionChanged"/>
 
             </Grid>
         </SplitView>

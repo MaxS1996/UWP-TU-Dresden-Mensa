@@ -36,17 +36,24 @@ namespace TUMensa
         Mensa selected;
         Meal chosenMeal;
 
-        String today = "https://www.studentenwerk-dresden.de/mensen/speiseplan/?print=1";
-        String tomorrow = "https://www.studentenwerk-dresden.de/mensen/speiseplan/morgen.html?print=1";
+        static String today = "https://www.studentenwerk-dresden.de/mensen/speiseplan/?print=1";
+        static String tomorrow = "https://www.studentenwerk-dresden.de/mensen/speiseplan/morgen.html?print=1";
 
-        String page = "https://www.studentenwerk-dresden.de/mensen/speiseplan/?print=1";
+        String page = today;
 
         public MainPage()
         {
             this.InitializeComponent();
             DataTransferManager.GetForCurrentView().DataRequested += MainPage_DataRequested;
-            Button3.Content = DateTime.Today.ToString("D");
+            TextBlockDate.Text = DateTime.Today.ToString("D");
             LoadMensen();
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                menu = false;
+                MySplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+            }
+
         }
 
         public async void DownloadPageAsync()
@@ -84,16 +91,23 @@ namespace TUMensa
 
         private void Button3_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            if(!MySplitView.IsPaneOpen)
+            {
+                MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            }
+
             if (page == today)
             {
-                Button3.Content = DateTime.Today.AddDays(1).ToString("D");
+                TextBlockDate.Text = DateTime.Today.AddDays(1).ToString("D");
+                Button3.Background = new SolidColorBrush(Windows.UI.Colors.Red);
                 page = tomorrow;
                 LoadMensen();
             }
             else
             {
                 page = today;
-                Button3.Content = DateTime.Today.ToString("D");
+                TextBlockDate.Text = DateTime.Today.ToString("D");
+                Button3.Background = new SolidColorBrush(Windows.UI.Colors.Transparent);
                 LoadMensen();
             }
         }
@@ -167,7 +181,7 @@ namespace TUMensa
             }
             MySplitView.IsPaneOpen = menu;
             MealListView.Items.Clear();
-            chosenMeal = new Meal("", "");
+            chosenMeal = null;
             selected = Mensen.ElementAt(index);
             showMensa(selected);
         }
@@ -175,6 +189,7 @@ namespace TUMensa
         private void showMensa(Mensa mensa)
         {
             TextBlock1.Text = mensa.getName();
+            TextBlockMealName.Text = "Bitte wählen Sie ein Gericht";
             MealListView.Items.Clear();
             foreach (Meal meal in mensa.getMeals())
             {
@@ -231,7 +246,7 @@ namespace TUMensa
 
             if (chosenMeal != null)
             {
-                ContentText = chosenMeal.getName() + "\n" + chosenMeal.getPrice() + "\n" + selected.getName() + "\n==================\n TU MENSA for WINDOWS";
+                ContentText = chosenMeal.getName() + "\n" + chosenMeal.getPrice() + "\n" + selected.getName() +"\n" + TextBlockDate.Text + "\n==================\n TU MENSA for WINDOWS";
 
                 args.Request.Data.SetText(ContentText);
                 args.Request.Data.Properties.Title = "Essensvorschlag!";
