@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Text.RegularExpressions;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage.Streams;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x407 dokumentiert.
 
@@ -42,10 +44,8 @@ namespace TUMensa
         public MainPage()
         {
             this.InitializeComponent();
-            
-            TextBlockMealName.Text = "Bitte wählen Sie eine Mensa aus";
-            TextBlockMealLabels.Text = "";
-            TextBlockMealPrice.Text = "";
+            DataTransferManager.GetForCurrentView().DataRequested += MainPage_DataRequested;
+            Button3.Content = DateTime.Today.ToString("D");
             LoadMensen();
         }
 
@@ -74,11 +74,6 @@ namespace TUMensa
 
         private void Button1_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            MensaListView.Items.Clear();
-            MealListView.Items.Clear();
-            TextBlockMealLabels.Text = "";
-            TextBlockMealName.Text = "";
-            TextBlockMealPrice.Text = "";
             LoadMensen();
         }
 
@@ -91,20 +86,33 @@ namespace TUMensa
         {
             if (page == today)
             {
-                Button3.Content = "Tomorrow";
+                Button3.Content = DateTime.Today.AddDays(1).ToString("D");
                 page = tomorrow;
                 LoadMensen();
             }
             else
             {
                 page = today;
-                Button3.Content = "Today";
+                Button3.Content = DateTime.Today.ToString("D");
                 LoadMensen();
             }
         }
 
         private void LoadMensen()
         {
+            MensaListView.Items.Clear();
+            MealListView.Items.Clear();
+            TextBlockMealLabels.Text = "";
+            TextBlockMealName.Text = "";
+            TextBlockMealPrice.Text = "";
+            TextBlock1.Text = "Mensen Studentenwerk Dresden";
+            chosenMeal = null;
+            selected = null;
+
+            TextBlockMealName.Text = "Bitte wählen Sie eine Mensa aus";
+            TextBlockMealLabels.Text = "";
+            TextBlockMealPrice.Text = "";
+
             Mensen = new HashSet<Mensa>();
             MensaListView.Items.Clear();
             MealListView.Items.Clear();
@@ -137,7 +145,6 @@ namespace TUMensa
             String matched = title.Match(source).Value;
             matched = matched.Replace("<title>", "");
             matched = matched.Replace("</title>", "");
-            //TextBlockTitle.Text = matched;
             return matched;
 
         }
@@ -202,7 +209,7 @@ namespace TUMensa
                 {
                     MealImage.Source = new BitmapImage(new Uri(chosenMeal.getPicturelink()));
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     MealImage.Source = new BitmapImage(new Uri("https://bilderspeiseplan.studentenwerk-dresden.de/lieber_mensen_gehen_gross.jpg"));
                 }
@@ -218,6 +225,29 @@ namespace TUMensa
             }
         }
 
+        private void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            String ContentText;
+
+            if (chosenMeal != null)
+            {
+                ContentText = chosenMeal.getName() + "\n" + chosenMeal.getPrice() + "\n" + selected.getName() + "\n==================\n TU MENSA for WINDOWS";
+
+                args.Request.Data.SetText(ContentText);
+                args.Request.Data.Properties.Title = "Essensvorschlag!";
+                args.Request.Data.SetWebLink(new Uri(chosenMeal.getMealLink()));
+
+                if(chosenMeal.getPicturelink() != null&&chosenMeal.getPicturelink() != "")
+                {
+                    args.Request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri(chosenMeal.getPicturelink())));
+                }
+            }
+            else
+            {
+                args.Request.FailWithDisplayText("Bitte erst ein Gericht auswählen!\n Please select a meal first!");
+            }
+        }
+
         public void showConnectionError()
         {
             TextBlock1.Text = "Verbindungsfehler";
@@ -225,6 +255,11 @@ namespace TUMensa
             TextBlockMealPrice.Text = "Versuchen Sie eine WLAN oder Mobilfunkverbindung herzustellen!";
             TextBlockMealName.Text = "Verbindungsfehler";
             TextBlockMealLabels.Text = "Verbindungsfehler";
+        }
+
+        private void ShareButton_Click(object sender, RoutedEventArgs e)
+        {           
+            DataTransferManager.ShowShareUI();
         }
     }
 }

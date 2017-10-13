@@ -27,7 +27,7 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Button x:Name="HamburgerButton"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE700;"
@@ -36,13 +36,34 @@
                             Background="Transparent"
                             Click="HamburgerButton_Click"
                             Grid.Row="0"/>
-                    
-                    <Button x:Name="Button1"
-                            Content="Reload"
-                            Margin="5,5,5,5"
-                            HorizontalAlignment="Center"
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="ReloadButton"
+                            Content="&#xE72C;" 
+                            FontFamily="Segoe MDL2 Assets"
+                            Width="50"
+                            Height="50"
+                            HorizontalAlignment="Right"
+                            Background="Transparent"
                             Tapped="Button1_Tapped"
-                            Grid.Row="1"/>
+                            Grid.Column="0"/>
+
+
+                        <Button x:Name="ShareButton"
+                            FontFamily="Segoe MDL2 Assets"
+                            Content="&#xE72D;"
+                            Width="50"
+                            Height="50"
+                            Background="Transparent"
+                            Click="ShareButton_Click"
+                            Grid.Column="1"/>
+
+                    </Grid>
 
                     <Button x:Name="Button2"
                             Content="Toggle Menu"

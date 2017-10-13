@@ -81,8 +81,8 @@ namespace TUMensa
                 var statusBar = StatusBar.GetForCurrentView();
                 if (statusBar != null)
                 {
-                    statusBar.BackgroundOpacity = 1;
-                    statusBar.BackgroundColor = (Color)this.Resources["SystemAccentColor"];
+                    statusBar.BackgroundOpacity = 0.5;
+                    //statusBar.BackgroundColor = (Color)this.Resources["SystemAccentColor"];
                     statusBar.ForegroundColor = (Color)this.Resources["SystemAccentColorDark3"];
                 }
             }
@@ -93,11 +93,14 @@ namespace TUMensa
                 if (titleBar != null)
                 {
                     titleBar.ButtonBackgroundColor = (Color)this.Resources["SystemAccentColor"];
-                    ///titleBar.ButtonForegroundColor = Colors.White;
-                    ///titleBar.ButtonHoverBackgroundColor = Colors.White;
-                    titleBar.ButtonHoverForegroundColor = Colors.Black;
+                    titleBar.ButtonForegroundColor = Colors.White;
+                    
+                    titleBar.ButtonHoverBackgroundColor = Colors.White;
+                    titleBar.ButtonHoverForegroundColor = (Color)this.Resources["SystemAccentColor"];
+
                     ///titleBar.InactiveBackgroundColor = Colors.Black;
                     titleBar.InactiveForegroundColor = (Color)this.Resources["SystemAccentColor"];
+
                     titleBar.BackgroundColor = (Color)this.Resources["SystemAccentColor"];
                     ///titleBar.ForegroundColor = Colors.Black;
                 }

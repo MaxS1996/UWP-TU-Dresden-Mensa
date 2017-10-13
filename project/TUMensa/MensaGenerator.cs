@@ -34,7 +34,7 @@ namespace TUMensa
 
         public bool isMensa()
         {
-            Regex plan = new Regex("<table class=\"speiseplan\">(.*?)</table><table class=\"speiseplan\">");
+            Regex plan = new Regex("<table class=\"speiseplan\">(.*?)</table>");
             return plan.IsMatch(source);
         }
 
@@ -90,9 +90,13 @@ namespace TUMensa
             Regex nExp = new Regex("<td class=\"text\">(.*?)</td>");
             Regex lsExp = new Regex("<td class=\"stoffe\">(.*?)</td>");
             Regex pExp = new Regex("<td class=\"preise\">(.*?)</a></td>");
+            Regex mensaVital = new Regex("<div class=\"mensavitalicon\">(.*?)</div>");
+            Regex htmlTags = new Regex("<(.*?)>");
 
             //extract name
             String name = nExp.Match(plan).Value;
+            name = mensaVital.Replace(name, "MENSA VITAL: ");
+            name = htmlTags.Replace(name, " ");
             name = name.Replace("<td class=\"text\">", "");
             name = name.Replace("</td>", "");
 
