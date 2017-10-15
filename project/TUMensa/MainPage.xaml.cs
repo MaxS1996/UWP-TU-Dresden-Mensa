@@ -147,7 +147,10 @@ namespace TUMensa
             while (God.isMensa())
             {
                 Mensa newMensa = God.createMensa();
-                Mensen.Add(newMensa);
+                if(newMensa.getMeals().Count != 0)
+                {
+                    Mensen.Add(newMensa);
+                }
             }
             fillListView();
             
