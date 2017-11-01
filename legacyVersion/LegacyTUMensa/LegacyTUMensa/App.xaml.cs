@@ -89,6 +89,18 @@ namespace LegacyTUMensa
                 titleBar.ButtonInactiveBackgroundColor = Colors.DarkGray;
                 titleBar.ButtonPressedBackgroundColor = accent;
             }
+
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+
+                var statusBar = StatusBar.GetForCurrentView();
+                if (statusBar != null)
+                {
+                    statusBar.BackgroundOpacity = 1.0;
+                    //statusBar.BackgroundColor = (Color)this.Resources["SystemAccentColor"];
+                    statusBar.ForegroundColor = (Color)this.Resources["SystemAccentColorDark3"];
+                }
+            }
         }
 
         /// <summary>

@@ -141,6 +141,7 @@
 
                 <TextBlock x:Name="MealDateTextBlock"
                            TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"
                            TextAlignment="Center"
@@ -148,6 +149,7 @@
 
                 <TextBlock x:Name="MealTitleTextBlock"
                            TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"
                            TextAlignment="Center"
@@ -155,6 +157,7 @@
 
                 <TextBlock x:Name="MealPriceTextBlock"
                            TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"
                            TextAlignment="Center"
@@ -162,6 +165,7 @@
 
                 <TextBlock x:Name="MealLabelTextBlock"
                            TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Center"
                            TextAlignment="Center"

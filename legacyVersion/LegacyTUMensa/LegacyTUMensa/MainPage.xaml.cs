@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -41,6 +42,12 @@ namespace LegacyTUMensa
             ShareButton.IsEnabled = false;
             DateTextBlock.Text = DateTime.Today.ToString("D");
             Download();
+            MySplitView.IsPaneOpen = true;
+
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                MySplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+            }
 
         }
 
@@ -77,7 +84,8 @@ namespace LegacyTUMensa
 
             try
             {
-                MensaListView.SelectedIndex = 1;
+                MensaListView.SelectedIndex = 0;
+                MySplitView.IsPaneOpen = true;
             }
 
             catch(Exception e)
@@ -99,11 +107,17 @@ namespace LegacyTUMensa
             }
             else
             {
+
                 selectedMensa = god.Mensen.ElementAt(index);
                 MensaTitleTextBlock.Text = selectedMensa.Name;
                 foreach(Meal meal in selectedMensa.Meals)
                 {
                     MealListView.Items.Add(meal.Name);
+                }
+
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    MySplitView.IsPaneOpen = false;
                 }
             }
         }
@@ -210,6 +224,7 @@ namespace LegacyTUMensa
 
             DateTextBlock.Text = day.ToString("D");
             Download();
+            MySplitView.IsPaneOpen = true;
         }
 
         private void MealListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
