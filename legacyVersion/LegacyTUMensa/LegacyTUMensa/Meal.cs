@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 
-namespace MensaApp2
+namespace LegacyTUMensa
 {
     class Meal
     {
@@ -212,3 +212,4 @@ namespace MensaApp2
 
     }
 }
+
