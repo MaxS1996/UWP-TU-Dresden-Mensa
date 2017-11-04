@@ -68,10 +68,10 @@
 
         <Grid HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
                 <RowDefinition Height="70" />
-                <RowDefinition Height="70" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="70" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
