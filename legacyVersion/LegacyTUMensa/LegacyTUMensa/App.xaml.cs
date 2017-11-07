@@ -97,8 +97,9 @@ namespace LegacyTUMensa
                 if (statusBar != null)
                 {
                     statusBar.BackgroundOpacity = 1.0;
-                    //statusBar.BackgroundColor = (Color)this.Resources["SystemAccentColor"];
-                    statusBar.ForegroundColor = (Color)this.Resources["SystemAccentColorDark3"];
+                    statusBar.BackgroundColor = (Color)this.Resources["SystemAccentColor"];
+                    //statusBar.ForegroundColor = (Color)this.Resources["SystemAccentColorDark3"];
+                    statusBar.ForegroundColor = Colors.White;
                 }
             }
         }

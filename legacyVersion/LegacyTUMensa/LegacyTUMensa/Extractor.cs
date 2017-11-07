@@ -64,7 +64,7 @@ namespace LegacyTUMensa
         /// just for debugging! DO NOT USE
         /// </summary>
         /// <param name="link"></param>
-        public Extractor(string link)
+        protected Extractor(string link)
         {
             this.url = new Uri(link);
             this.load = false;
