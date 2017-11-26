@@ -30,6 +30,22 @@ namespace LegacyTUMensa
         private Extractor god = null;
         private Uri today = new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/?print=1");
         private Uri tomorrow = new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/morgen.html?print=1");
+        private Uri[] w0 = {    new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d1.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d2.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d3.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d4.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d5.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d6.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d7.html?print=1")};
+
+        private Uri[] w1= {    new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d1.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d2.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d3.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d4.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d5.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d6.html?print=1"),
+                                new Uri("https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d7.html?print=1")};
+
         private Mensa selectedMensa;
         private Meal selectedMeal;
 

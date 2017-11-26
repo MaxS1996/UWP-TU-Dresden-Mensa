@@ -26,6 +26,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
@@ -84,9 +85,58 @@
                               x:Name="MensaListView"
                               SelectionMode="Single"
                               HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Center"
                               VerticalAlignment="Stretch"
                               Width="300"
                               SelectionChanged="MensaListView_SelectionChanged" Margin="50,0,0,0"/>
+                    
+                    <!--<Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Content="0"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="0"
+                                Background="{ThemeResource SystemControlBackgroundAccentBrush}"/>
+
+                        <Button Content="+1"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="1"/>
+
+                        <Button Content="+2"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="2"/>
+
+                        <Button Content="+3"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="3"/>
+
+                        <Button Content="+4"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="4"/>
+
+                        <Button Content="+5"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="5"/>
+
+                        <Button Content="+6"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="6"/>
+                    </Grid>-->
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
@@ -114,6 +164,13 @@
                                    TextAlignment="Center"
                                    Text="DATE"/>
                     </Grid>
+
+                    <TextBlock Text="Version 2.1.4"
+                               FontSize="10"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center"
+                               Grid.Row="5"/>
                 </Grid>
             </SplitView.Pane>
 
@@ -121,11 +178,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="45"/>
-                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock x:Name="MensaTitleTextBlock"
@@ -185,6 +242,7 @@
 
                 <ListView x:Name="MealListView"
                           HorizontalAlignment="Stretch"
+                          HorizontalContentAlignment="Stretch"
                           Margin="10"
                           Width="auto"
                           VerticalAlignment="Bottom"

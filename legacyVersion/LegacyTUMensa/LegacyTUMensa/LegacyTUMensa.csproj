@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>LegacyTUMensa_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>74FE091EB79EE7B53CBC3133423F33C0490D5AC6</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F8C41D59B713A5A3E0E1FAAFE965407C0503B93A</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
