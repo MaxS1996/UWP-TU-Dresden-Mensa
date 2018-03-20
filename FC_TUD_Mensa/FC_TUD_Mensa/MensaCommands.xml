@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="de-de" Name="MensaCommandSet_de-de">
+    <AppName> Mensa </AppName>
+    <Example> Was gibt es in der Mensa? </Example>
+
+    <Command Name="wasGibtEsInDerSpeziellenMensa">
+      <Example> Was gibt es heute im Zeltschlösschen? </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Was gibt es {date} [in der] [Mensa] {place}</ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> Was gibt es {date} [im] [Mensa] {place}</ListenFor>
+      <Feedback> Suche nach den Angeboten am {date} in {place}</Feedback>
+      <VoiceCommandService Target="MensaVoiceCommandService"/>
+    </Command>
+
+    <Command Name="wasGibtEsInDerMensa">
+      <Example> Was gibt es heute in der {builtin:AppName} </Example>
+      <ListenFor RequireAppName="ExplicitlySpecified"> Was gibt es {date} in der {builtin:AppName} </ListenFor>
+      <Feedback> Suche nach dem Speiseplan von {date}</Feedback>
+      <VoiceCommandService Target="MensaVoiceCommandService"/>
+    </Command>
+
+    <Command Name="OpenMensa">
+      <Example> Was gibt es in der {builtin:AppName}? </Example>
+      <ListenFor RequireAppName="ExplicitlySpecified"> Was gibt es in der {builtin:AppName} </ListenFor>
+      <Feedback> Zeige den Speiseplan</Feedback>
+      <Navigate Target="MainPage.xaml"/>
+    </Command>
+
+    <PhraseList Label="place">
+      <Item>Reichenbachstraße</Item>
+      <Item>Zeltschlösschen</Item>
+      <Item>Grill Cube</Item>
+      <Item>Alte Mensa</Item>
+      <Item>Mensologie</Item>
+      <Item>Siedepunkt</Item>
+      <Item>Johannstadt</Item>
+      <Item>WU Eins</Item>
+      <Item>Brühl</Item>
+      <Item>U-Boot</Item>
+      <Item>Zittau</Item>
+      <Item>Stimm-Gabel</Item>
+      <Item>Palucca</Item>
+      <Item>Görlitz</Item>
+      <Item>Rothenburg</Item>
+      <Item>Sport</Item>
+      <Item>Kreuz Gymnasium</Item>
+      <Item>Kindertagesstätte</Item>
+    </PhraseList>
+
+    <PhraseList Label="date">
+      <Item>Heute</Item>
+      <Item>Morgen</Item>
+      <Item>Montag</Item>
+      <Item>Dienstag</Item>
+      <Item>Mittwoch</Item>
+      <Item>Donnerstag</Item>
+      <Item>Freitag</Item>
+      <Item>Samstag</Item>
+      <Item>Sonnabend</Item>
+      <Item>Sonntag</Item>
+      <Item>Übermorgen</Item>
+    </PhraseList>
+    
+  </CommandSet>
+</VoiceCommands>

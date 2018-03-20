@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC_TUD_Mensa", "FC_TUD_Mensa\FC_TUD_Mensa.csproj", "{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|ARM.ActiveCfg = Debug|ARM
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|ARM.Build.0 = Debug|ARM
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|ARM.Deploy.0 = Debug|ARM
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|x64.ActiveCfg = Debug|x64
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|x64.Build.0 = Debug|x64
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|x64.Deploy.0 = Debug|x64
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|x86.ActiveCfg = Debug|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|x86.Build.0 = Debug|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Debug|x86.Deploy.0 = Debug|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|Any CPU.ActiveCfg = Release|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|ARM.ActiveCfg = Release|ARM
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|ARM.Build.0 = Release|ARM
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|ARM.Deploy.0 = Release|ARM
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|x64.ActiveCfg = Release|x64
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|x64.Build.0 = Release|x64
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|x64.Deploy.0 = Release|x64
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|x86.ActiveCfg = Release|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|x86.Build.0 = Release|x86
+		{24A18CC6-2B47-4CC2-984C-EED4A85B9F05}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBA8684C-2C98-412D-B628-DD9DA4383461}
+	EndGlobalSection
+EndGlobal
