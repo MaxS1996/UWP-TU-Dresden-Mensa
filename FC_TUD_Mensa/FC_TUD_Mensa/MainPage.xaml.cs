@@ -157,6 +157,7 @@ namespace FC_TUD_Mensa
         {
             if (args.NewDate.HasValue)
             {
+                int mensaPos = MensaListView.SelectedIndex;
                 ShareButton.IsEnabled = false;
                 DateTime targetTime = args.NewDate.Value.DateTime;
                 speiseplan.Days.TryGetValue(targetTime, out selectedDay);
@@ -179,6 +180,7 @@ namespace FC_TUD_Mensa
 
                 DateTextBlock.Text = selectedDay.Day.ToString("D");
                 MensaDateTextBlock.Text = selectedDay.Day.ToString("D");
+                MensaListView.SelectedIndex = mensaPos;
             }
             
         }
@@ -291,7 +293,9 @@ namespace FC_TUD_Mensa
 
         private void ReloadButton_Click(object sender, RoutedEventArgs e)
         {
+            int mensaPosition = MensaListView.SelectedIndex;
             Download();
+            MensaListView.SelectedIndex = mensaPosition;
         }
 
         private void MainPage_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
