@@ -64,7 +64,12 @@ namespace MensaExtractor
             MatchCollection mensaMatches = regMensa.Matches(cleanSource);
             foreach (Match mensaMatch in mensaMatches)
             {
-                mensen.Add(new Mensa(mensaMatch.Value));
+                Mensa mensa = new Mensa(mensaMatch.Value);
+
+                if (mensa.IsOpen)
+                {
+                    mensen.Add(mensa);
+                }
             }
         }
 

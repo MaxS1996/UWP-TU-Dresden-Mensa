@@ -40,7 +40,22 @@ namespace MensaExtractor
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d6.html?print=1",
                                     //nächste Woche Samstag
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d0.html?print=1"};
-                                    //nächste Woche Sonntag
+        //nächste Woche Sonntag
+
+        private string[] w2 = {     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d1.html?print=1",
+                                    //nächste Woche Montag
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d2.html?print=1",
+                                    //nächste Woche Dienstag
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d3.html?print=1",
+                                    //nächste Woche Mittwoch
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d4.html?print=1",
+                                    //nächste Woche Donnerstag
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d5.html?print=1",
+                                    //nächste Woche Freitag
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d6.html?print=1",
+                                    //nächste Woche Samstag
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d0.html?print=1"};
+        //nächste Woche Sonntag
 
         private const string today = "https://www.studentenwerk-dresden.de/mensen/speiseplan/?print=1";
         private const string tomorrow = "https://www.studentenwerk-dresden.de/mensen/speiseplan/morgen.html?print=1";
@@ -61,7 +76,7 @@ namespace MensaExtractor
                     if (currentLink != null)
                     {
                         MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day))
+                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
                         {
                             MensaDay.TryAdd(newDay.Day, newDay);
                         }
@@ -74,7 +89,19 @@ namespace MensaExtractor
                         if (currentLink != null)
                         {
                             MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                            if (!MensaDay.Keys.Contains<DateTime>(newDay.Day))
+                            if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
+                            {
+                                MensaDay.TryAdd(newDay.Day, newDay);
+                            }
+                        }
+                    }
+
+                    foreach (string currentLink in w2)
+                    {
+                        if (currentLink != null)
+                        {
+                            MensaDay newDay = GetMensaDay(new Uri(currentLink));
+                            if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
                             {
                                 MensaDay.TryAdd(newDay.Day, newDay);
                             }
@@ -89,7 +116,7 @@ namespace MensaExtractor
                 if (currentLink != null)
                 {
                     MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                    if (!MensaDay.Keys.Contains<DateTime>(newDay.Day))
+                    if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
                     {
                         MensaDay.TryAdd(newDay.Day, newDay);
                     }
@@ -103,7 +130,20 @@ namespace MensaExtractor
                     if (currentLink != null)
                     {
                         MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day))
+                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
+                        {
+                            MensaDay.TryAdd(newDay.Day, newDay);
+                        }
+
+                    }
+                });
+
+                Parallel.ForEach<string>(w2, (currentLink) =>
+                {
+                    if (currentLink != null)
+                    {
+                        MensaDay newDay = GetMensaDay(new Uri(currentLink));
+                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day)&&newDay.HasOfferings)
                         {
                             MensaDay.TryAdd(newDay.Day, newDay);
                         }

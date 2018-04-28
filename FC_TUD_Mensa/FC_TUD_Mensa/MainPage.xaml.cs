@@ -180,7 +180,11 @@ namespace FC_TUD_Mensa
 
                 DateTextBlock.Text = selectedDay.Day.ToString("D");
                 MensaDateTextBlock.Text = selectedDay.Day.ToString("D");
-                MensaListView.SelectedIndex = mensaPos;
+
+                if(MensaListView.Items.Count > mensaPos - 1)
+                {
+                    MensaListView.SelectedIndex = mensaPos;
+                }
             }
             
         }
