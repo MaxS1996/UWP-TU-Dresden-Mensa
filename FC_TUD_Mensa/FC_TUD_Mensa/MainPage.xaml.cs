@@ -67,7 +67,7 @@ namespace FC_TUD_Mensa
             ReloadButton.IsEnabled = false;
             try
             {
-                speiseplan.Download();
+                speiseplan.Download(false, true, true, true);
 
                 if (speiseplan.Days.TryGetValue(DateTime.Today, out selectedDay) && selectedDay.Mensen.Count > 0)
                 {
@@ -335,19 +335,31 @@ namespace FC_TUD_Mensa
             var currentWidth = Window.Current.Bounds.Width;
             if(currentWidth <= 1080)
             {
+                MainSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
                 HamburgerButton.Visibility = Visibility.Visible;
                 HamburgerButton.IsEnabled = true;
-                if(currentWidth <= 720)
+                if (currentWidth <= 800)
                 {
-                    MainSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
                     MainSplitView.IsPaneOpen = false;
                     MealImage.MinWidth = 30;
                     MealImage.MaxWidth = 300;
+
+                    UpButton.IsEnabled = true;
+                    UpButton.Visibility = Visibility.Visible;
+
+                    DownButton.IsEnabled = true;
+                    DownButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     MainSplitView.DisplayMode = SplitViewDisplayMode.CompactInline;
                     MainSplitView.IsPaneOpen = true;
+
+                    UpButton.IsEnabled = false;
+                    UpButton.Visibility = Visibility.Collapsed;
+
+                    DownButton.IsEnabled = false;
+                    DownButton.Visibility = Visibility.Collapsed;
                 }
             }
             else
@@ -358,6 +370,36 @@ namespace FC_TUD_Mensa
                 HamburgerButton.IsEnabled = false;
                 MealImage.MinWidth = 400;
                 MealImage.MaxWidth = 800;
+
+                UpButton.IsEnabled = false;
+                UpButton.Visibility = Visibility.Collapsed;
+
+                DownButton.IsEnabled = false;
+                DownButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void UpButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(MensaListView.SelectedIndex < MensaListView.Items.Count-1)
+            {
+                MensaListView.SelectedIndex += 1;
+            }
+            else
+            {
+                MensaListView.SelectedIndex = 0;
+            }
+        }
+
+        private void DownButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MensaListView.SelectedIndex > 0)
+            {
+                MensaListView.SelectedIndex -= 1;
+            }
+            else
+            {
+                MensaListView.SelectedIndex = MensaListView.Items.Count - 1;
             }
         }
     }

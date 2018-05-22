@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="62484justastudent.TUMensa" Publisher="CN=57F4033C-55D9-4F51-B360-90317BE84CEA" Version="5.1.2.0" />
+  <Identity Name="62484justastudent.TUMensa" Publisher="CN=57F4033C-55D9-4F51-B360-90317BE84CEA" Version="5.1.3.0" />
   <mp:PhoneIdentity PhoneProductId="8445d249-2b53-436b-b954-a5284688405b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>TU Mensa</DisplayName>

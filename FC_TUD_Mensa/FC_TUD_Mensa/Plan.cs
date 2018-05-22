@@ -12,7 +12,8 @@ namespace MensaExtractor
     {
         private ConcurrentDictionary<DateTime, MensaDay> MensaDay = new ConcurrentDictionary<DateTime, MensaDay>();
 
-        private string[] w0 = {     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d1.html?print=1" ,
+        private List<string> _w0 = new List<string>{
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d1.html?print=1" ,
                                     //Montag
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d2.html?print=1",
                                     //Dienstag
@@ -27,7 +28,8 @@ namespace MensaExtractor
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w0-d0.html?print=1"};
                                     //Sonntag
 
-        private string[] w1 = {     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d1.html?print=1",
+        private List<string> _w1 = new List<string> {
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d1.html?print=1",
                                     //nächste Woche Montag
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d2.html?print=1",
                                     //nächste Woche Dienstag
@@ -41,8 +43,9 @@ namespace MensaExtractor
                                     //nächste Woche Samstag
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w1-d0.html?print=1"};
         //nächste Woche Sonntag
-
-        private string[] w2 = {     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d1.html?print=1",
+        
+        private List<string> _w2 = new List<string>{
+                                    "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d1.html?print=1",
                                     //nächste Woche Montag
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d2.html?print=1",
                                     //nächste Woche Dienstag
@@ -55,7 +58,7 @@ namespace MensaExtractor
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d6.html?print=1",
                                     //nächste Woche Samstag
                                     "https://www.studentenwerk-dresden.de/mensen/speiseplan/w2-d0.html?print=1"};
-        //nächste Woche Sonntag
+                                    //nächste Woche Sonntag
 
         private const string today = "https://www.studentenwerk-dresden.de/mensen/speiseplan/?print=1";
         private const string tomorrow = "https://www.studentenwerk-dresden.de/mensen/speiseplan/morgen.html?print=1";
@@ -65,13 +68,29 @@ namespace MensaExtractor
             //Download();
         }
 
-        public void Download(bool debug = false, bool onlyThisWeek = false)
+        public void Download(bool debug = false, bool thisWeek = true, bool nextWeek = true, bool lastWeek = true)
         {
             MensaDay.Clear();
+            List<string> links = new List<string>();
+
+            if (thisWeek)
+            {
+                links.AddRange(_w0);
+            }
+
+            if (nextWeek)
+            {
+                links.AddRange(_w1);
+            }
+
+            if (lastWeek)
+            {
+                links.AddRange(_w2);
+            }
 
             if (debug)
             {
-                foreach (string currentLink in w0)
+                foreach (string currentLink in links)
                 {
                     if (currentLink != null)
                     {
@@ -82,36 +101,26 @@ namespace MensaExtractor
                         }
                     }
                 }
-                if (!onlyThisWeek)
-                {
-                    foreach (string currentLink in w1)
-                    {
-                        if (currentLink != null)
-                        {
-                            MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                            if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
-                            {
-                                MensaDay.TryAdd(newDay.Day, newDay);
-                            }
-                        }
-                    }
-
-                    foreach (string currentLink in w2)
-                    {
-                        if (currentLink != null)
-                        {
-                            MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                            if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
-                            {
-                                MensaDay.TryAdd(newDay.Day, newDay);
-                            }
-                        }
-                    }
-                }
                 return;
             }
 
-            Parallel.ForEach<string>(w0, (currentLink) =>
+            if (thisWeek)
+            {
+                links.AddRange(_w0);
+            }
+
+            if (nextWeek)
+            {
+                links.AddRange(_w1);
+            }
+
+            if (lastWeek)
+            {
+                links.AddRange(_w2);
+            }
+
+
+            Parallel.ForEach<string>(links, (currentLink) =>
             {
                 if (currentLink != null)
                 {
@@ -122,41 +131,24 @@ namespace MensaExtractor
                     }
                 }
             });
-
-            if (!onlyThisWeek)
-            {
-                Parallel.ForEach<string>(w1, (currentLink) =>
-                {
-                    if (currentLink != null)
-                    {
-                        MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day) && newDay.HasOfferings)
-                        {
-                            MensaDay.TryAdd(newDay.Day, newDay);
-                        }
-
-                    }
-                });
-
-                Parallel.ForEach<string>(w2, (currentLink) =>
-                {
-                    if (currentLink != null)
-                    {
-                        MensaDay newDay = GetMensaDay(new Uri(currentLink));
-                        if (!MensaDay.Keys.Contains<DateTime>(newDay.Day)&&newDay.HasOfferings)
-                        {
-                            MensaDay.TryAdd(newDay.Day, newDay);
-                        }
-
-                    }
-                });
-            }
         }
 
         private MensaDay GetMensaDay(Uri link, bool debug = false)
         {
             HttpClient client = new HttpClient();
             var response = client.GetByteArrayAsync(link).Result;
+            string help = System.Text.Encoding.GetEncoding("utf-8").GetString(response, 0, response.Length - 1);
+            help = System.Net.WebUtility.HtmlDecode(help);
+            help = help.Replace("\n", "");
+            help = help.Replace("\\t", "");
+
+            return new MensaDay(help, link, debug);
+        }
+
+        private async Task<MensaDay> GetMensaDayAsync(Uri link, bool debug = false)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetByteArrayAsync(link);
             string help = System.Text.Encoding.GetEncoding("utf-8").GetString(response, 0, response.Length - 1);
             help = System.Net.WebUtility.HtmlDecode(help);
             help = help.Replace("\n", "");

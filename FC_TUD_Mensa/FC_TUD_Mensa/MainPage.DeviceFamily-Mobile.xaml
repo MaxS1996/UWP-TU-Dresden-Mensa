@@ -47,7 +47,8 @@
                             Width="50"
                             Height="50"
                             Grid.Column="0"
-                            Grid.Row="3"
+                            Grid.Row="2"
+                            VerticalAlignment="Top"
                             FontFamily="Segoe MDL2 Assets"
                             Click="ReloadButton_Click"
                             IsEnabled="False"
@@ -87,6 +88,29 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                TextAlignment="Center"/>
+
+                    <Button     Grid.Row="2" Grid.Column="0"
+                                Width="50"
+                                Height="50"
+                                VerticalAlignment="Bottom"
+                                x:Name="UpButton"
+                                FontFamily="Segoe MDL2 Assets"
+                                IsEnabled="True"
+                                Visibility="Visible"
+                                Click="UpButton_Click"
+                                Content="&#xE72A;"
+                                />
+                    <Button     Grid.Row="3" Grid.Column="0"
+                                Width="50"
+                                Height="50"
+                                VerticalAlignment="Top"
+                                x:Name="DownButton"
+                                FontFamily="Segoe MDL2 Assets"
+                                IsEnabled="True"
+                                Visibility="Visible"
+                                Click="DownButton_Click"
+                                Content="&#xE72B;"
+                                />
 
                 </Grid>
             </SplitView.Pane>
